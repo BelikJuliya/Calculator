@@ -8,11 +8,13 @@ import kotlin.collections.ArrayList
 class CalculationModel {
     private val bracesQueue = LinkedList<String>()
     private val numbersWithoutBraces = LinkedList<String>()
+    private val resultOfBraces = LinkedList<Pair<String, String>>()
     val result = MutableLiveData<Int>()
 
     fun calculate(expression: String) {
-        cutUnbracedNumbers(expression)
-        findBraces(expression)
+        //cutUnbracedNumbers(expression)
+        //findBraces(expression)
+        removeBraces(expression)
         calculateBraces(bracesQueue)
         calculateExpression(numbersWithoutBraces)
     }
@@ -71,19 +73,20 @@ class CalculationModel {
             when {
                 expression[i] == "+" -> {
                     expression[i] =
-                        (expression[i - 1].toInt() * expression[i + 1].toInt()).toString()
+                        (expression[i - 1].toInt() + expression[i + 1].toInt()).toString()
                     expression.removeAt(i + 1)
                     expression.removeAt(i - 1)
                 }
                 expression[i] == "-" -> {
                     expression[i] =
-                        (expression[i - 1].toInt() / expression[i + 1].toInt()).toString()
+                        (expression[i - 1].toInt() - expression[i + 1].toInt()).toString()
                     expression.removeAt(i + 1)
                     expression.removeAt(i - 1)
                 }
             }
         }
-        numbersWithoutBraces.add(expression.joinToString { "" })
+        
+        numbersWithoutBraces.add(expression.joinToString())
     }
 
     private fun calculateBraces(expression: LinkedList<String>) {
@@ -95,12 +98,28 @@ class CalculationModel {
     }
 
     private fun cutUnbracedNumbers(expression: String) {
-        val start = expression.indexOf("(")
-        val end = expression.lastIndexOf(")")
-        val beforeBracesString = expression.substring(0, start)
-        val afterBracesString = expression.substring(end)
-        numbersWithoutBraces.add(beforeBracesString)
-        numbersWithoutBraces.add(afterBracesString)
+        if (expression.contains("(")) {
+            val start = expression.indexOf("(")
+            val end = expression.lastIndexOf(")")
+            val beforeBracesString = expression.substring(0, start)
+            val afterBracesString = expression.substring(end + 1)
+            numbersWithoutBraces.add(beforeBracesString)
+            numbersWithoutBraces.add(afterBracesString)
+        }
+    }
+
+    private fun removeBraces(expression: String) {
+        if (expression.contains("(") || expression.contains(")")){
+            val start = expression.indexOf("(")
+            val end = expression.lastIndexOf(")")
+            val beforeBracesString = expression.substring(0, start)
+            val afterBracesString = expression.substring(end + 1)
+            numbersWithoutBraces.add(beforeBracesString)
+            numbersWithoutBraces.add(afterBracesString)
+            val inBracesExpression = expression.substring(start + 1, end)
+            bracesQueue.add(inBracesExpression)
+            removeBraces(inBracesExpression)
+        }
     }
 }
 
