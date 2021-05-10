@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation.xml"
-    app:startDestination="@id/passwordDialogFragment">
-
-    <dialog
-        android:id="@+id/passwordDialogFragment"
-        android:name="android.example.calculator.view.PasswordDialogFragment"
-        android:label="PasswordDialogFragment" >
-        <action
-            android:id="@+id/action_passwordDialogFragment_to_secretFragment"
-            app:destination="@id/secretFragment" />
-        <action
-            android:id="@+id/action_passwordDialogFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </dialog>
+    app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/secretFragment"
         android:name="android.example.calculator.view.SecretFragment"
@@ -23,7 +11,7 @@
         android:name="android.example.calculator.view.MainFragment"
         android:label="MainFragment" >
         <action
-            android:id="@+id/action_mainFragment_to_passwordDialogFragment"
-            app:destination="@id/passwordDialogFragment" />
+            android:id="@+id/action_mainFragment_to_secretFragment"
+            app:destination="@id/secretFragment" />
     </fragment>
 </navigation>
