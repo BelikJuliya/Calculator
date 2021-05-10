@@ -10,14 +10,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Default
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class MainFragment : Fragment() {
     private var sb = java.lang.StringBuilder()
     private val PASSWORD = "123"
-    private val DELAY = 6000L
+    private val DELAY = 5000L
     val secretSb = java.lang.StringBuilder()
-
+    private lateinit var inputText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +32,7 @@ class MainFragment : Fragment() {
 
         var isSecretModeOn = false
 
-        val inputText = view.findViewById<TextView>(R.id.input_text_view)
+        inputText = view.findViewById(R.id.input_text_view)
         val oneBtn = view.findViewById<Button>(R.id.one_btn)
         val twoBtn = view.findViewById<Button>(R.id.two_btn)
         val threeBtn = view.findViewById<Button>(R.id.three_btn)
@@ -94,6 +99,19 @@ class MainFragment : Fragment() {
             return@setOnLongClickListener true
         }
 
+        CoroutineScope(Default).launch { calculate() }
+
         return view
+    }
+
+    private suspend fun calculate(): String {
+        // Calculator().calculate()
+        return ""
+    }
+
+    private suspend fun setCalculationResult() {
+        withContext(Main) {
+            inputText.text = calculate()
+        }
     }
 }
