@@ -38,6 +38,7 @@ class MainFragment : Fragment() {
         val sevenBtn = view.findViewById<Button>(R.id.seven_btn)
         val eightBtn = view.findViewById<Button>(R.id.eight_btn)
         val nineBtn = view.findViewById<Button>(R.id.nine_btn)
+        val zeroBtn = view.findViewById<Button>(R.id.zero_btn)
         val plusBtn = view.findViewById<Button>(R.id.plus_btn)
         val minusBtn = view.findViewById<Button>(R.id.minus_btn)
         val multiplyBtn = view.findViewById<Button>(R.id.multiply_btn)
@@ -45,6 +46,8 @@ class MainFragment : Fragment() {
         val openBracketBtn = view.findViewById<Button>(R.id.open_bracket_btn)
         val closeBracketBtn = view.findViewById<Button>(R.id.close_bracket_btn)
         val resultBtn = view.findViewById<Button>(R.id.equals_btn)
+        val dotBtn = view.findViewById<Button>(R.id.dot_btn)
+        val delBtn = view.findViewById<Button>(R.id.delete_btn)
 
         val buttons = arrayListOf<Button>()
         buttons.add(oneBtn)
@@ -58,25 +61,31 @@ class MainFragment : Fragment() {
             add(sevenBtn)
             add(eightBtn)
             add(nineBtn)
+            add(zeroBtn)
             add(plusBtn)
             add(minusBtn)
             add(multiplyBtn)
             add(davideBtn)
             add(openBracketBtn)
             add(closeBracketBtn)
+            add(dotBtn)
         }
 
         val sb = StringBuilder()
         val secretSb = StringBuilder()
         var isSecretModeOn = false
-        inputText = view.findViewById(R.id.input_text_view)
+        inputText = view.findViewById(R.id.input_text)
         buttons.forEach { button ->
             button.setOnClickListener {
-                if (!isSecretModeOn) inputText.text = sb?.append(button.text)
+                if (!isSecretModeOn) inputText.text = sb.append(button.text)
                 else {
                     secretSb.append(button.text)
                 }
             }
+        }
+
+        delBtn.setOnClickListener {
+            inputText.text = ""
         }
 
         resultBtn.setOnClickListener {
