@@ -1,7 +1,7 @@
 package android.example.calculator.view
 
+import android.example.calculator.DaggerCalculatorComponent
 import android.example.calculator.R
-import android.example.calculator.model.Calculator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +17,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 
+const val DELAY = 5000L
+const val PASSWORD = "123"
+
 class MainFragment : Fragment() {
-    private var sb = java.lang.StringBuilder()
-    private val PASSWORD = "123"
-    private val DELAY = 5000L
-    val secretSb = java.lang.StringBuilder()
     private lateinit var inputText: TextView
 
     override fun onCreateView(
@@ -30,9 +29,6 @@ class MainFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
-        var isSecretModeOn = false
-
-        inputText = view.findViewById(R.id.input_text_view)
         val oneBtn = view.findViewById<Button>(R.id.one_btn)
         val twoBtn = view.findViewById<Button>(R.id.two_btn)
         val threeBtn = view.findViewById<Button>(R.id.three_btn)
@@ -70,7 +66,10 @@ class MainFragment : Fragment() {
             add(closeBracketBtn)
         }
 
-        sb = StringBuilder()
+        val sb = StringBuilder()
+        val secretSb = StringBuilder()
+        var isSecretModeOn = false
+        inputText = view.findViewById(R.id.input_text_view)
         buttons.forEach { button ->
             button.setOnClickListener {
                 if (!isSecretModeOn) inputText.text = sb?.append(button.text)
@@ -81,7 +80,7 @@ class MainFragment : Fragment() {
         }
 
         resultBtn.setOnClickListener {
-            inputText.text = Calculator().calculate(inputText.text.toString()).toString()
+            CoroutineScope(Default).launch { setCalculationResult() }
         }
 
         val navController = NavHostFragment.findNavController(this)
@@ -99,19 +98,13 @@ class MainFragment : Fragment() {
             return@setOnLongClickListener true
         }
 
-        CoroutineScope(Default).launch { calculate() }
-
         return view
     }
 
-    private suspend fun calculate(): String {
-        // Calculator().calculate()
-        return ""
-    }
-
     private suspend fun setCalculationResult() {
+        val calculator = DaggerCalculatorComponent.create().getCalculator()
         withContext(Main) {
-            inputText.text = calculate()
+            inputText.text = calculator.calculate(inputText.text as String)
         }
     }
 }

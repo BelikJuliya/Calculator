@@ -1,12 +1,13 @@
 package android.example.calculator.model
 
 import java.util.*
+import javax.inject.Inject
 
 
-class Calculator {
+class Calculator @Inject constructor() {
 
-    fun calculate(expression: String){
-        rpnToAnswer(expressionToRPN(expression))
+    fun calculate(expression: String): String {
+        return rpnToAnswer(expressionToRPN(expression)).toString()
     }
 
     private fun expressionToRPN(expression: String): String {
@@ -40,7 +41,7 @@ class Calculator {
         return current
     }
 
-     private fun rpnToAnswer(rpn: String): Double? {
+    private fun rpnToAnswer(rpn: String): Double? {
         var operand = String()
         val stack = Stack<Double>()
 
