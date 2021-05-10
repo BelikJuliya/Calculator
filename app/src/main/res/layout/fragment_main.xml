@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:orientation="horizontal"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".view.MainActivity"
-    android:background="@color/colorBackground">
+    tools:context=".view.MainActivity">
 
     <LinearLayout
         android:id="@+id/resultview"
@@ -20,7 +20,9 @@
             android:id="@+id/input_text"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="@color/colorButtons" />
+            android:background="@color/colorButtons"
+            android:textColor="@color/colorBackground"
+            android:textSize="32sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +54,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="7"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/eight_btn"
@@ -60,7 +63,9 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="8"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/nine_btn"
@@ -69,7 +74,8 @@
                     android:background="@color/colorBackground"
                     android:elevation="0dp"
                     android:text="9"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
             </TableRow>
 
@@ -86,14 +92,16 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="4"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/five_btn"
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="5"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/six_btn"
@@ -101,7 +109,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="6"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
             </TableRow>
 
@@ -116,7 +125,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="1"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/two_btn"
@@ -124,7 +134,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="2"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/three_btn"
@@ -132,7 +143,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="3"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
             </TableRow>
 
@@ -148,7 +160,8 @@
                     android:background="@color/colorBackground"
                     android:minHeight="48dp"
                     android:text="."
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/zero_btn"
@@ -156,7 +169,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="0"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
                 <Button
                     android:id="@+id/equals_btn"
@@ -164,14 +178,17 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="="
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBackground">
+                android:layout_marginTop="16dp"
+                android:background="@color/colorBackground"
+                android:gravity="center_horizontal">
 
                 <Button
                     android:id="@+id/open_bracket_btn"
@@ -179,7 +196,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="("
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="23sp" />
 
                 <Button
                     android:id="@+id/close_bracket_btn"
@@ -187,7 +205,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text=")"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="23sp" />
 
             </TableRow>
         </TableLayout>
@@ -208,7 +227,9 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="DEL"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+
+                    android:textSize="@dimen/buttons_text_size" />
 
             </TableRow>
 
@@ -223,7 +244,8 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="/"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+                    android:textSize="@dimen/buttons_text_size" />
             </TableRow>
 
             <TableRow
@@ -236,8 +258,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
-                    android:text="x"
-                    android:textColor="@color/colorButtons" />
+                    android:text="*"
+                    android:textColor="@color/colorButtons"
+
+                    android:textSize="@dimen/buttons_text_size" />
             </TableRow>
 
             <TableRow
@@ -251,7 +275,9 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="+"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+
+                    android:textSize="@dimen/buttons_text_size" />
 
             </TableRow>
 
@@ -265,7 +291,9 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBackground"
                     android:text="-"
-                    android:textColor="@color/colorButtons" />
+                    android:textColor="@color/colorButtons"
+
+                    android:textSize="@dimen/buttons_text_size" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

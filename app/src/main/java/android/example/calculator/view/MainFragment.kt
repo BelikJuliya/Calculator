@@ -22,6 +22,7 @@ const val PASSWORD = "123"
 
 class MainFragment : Fragment() {
     private lateinit var inputText: TextView
+    private var sb = StringBuilder()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,7 +72,6 @@ class MainFragment : Fragment() {
             add(dotBtn)
         }
 
-        val sb = StringBuilder()
         val secretSb = StringBuilder()
         var isSecretModeOn = false
         inputText = view.findViewById(R.id.input_text)
@@ -85,7 +85,7 @@ class MainFragment : Fragment() {
         }
 
         delBtn.setOnClickListener {
-            inputText.text = ""
+            inputText.text = sb.clear()
         }
 
         resultBtn.setOnClickListener {
@@ -100,13 +100,13 @@ class MainFragment : Fragment() {
                     if (secretSb.toString() == PASSWORD) {
                         navController.navigate(R.id.secretFragment)
                     } else {
+                        secretSb.clear()
                         isSecretModeOn = false
                     }
                 }
             }, DELAY)
             return@setOnLongClickListener true
         }
-
         return view
     }
 
@@ -114,6 +114,7 @@ class MainFragment : Fragment() {
         val calculator = DaggerCalculatorComponent.create().getCalculator()
         withContext(Main) {
             inputText.text = calculator.calculate(inputText.text as String)
+            sb.clear()
         }
     }
 }
